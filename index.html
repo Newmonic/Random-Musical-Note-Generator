@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <Title>Untitled</Title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <!-- Latest compiled and minified Bootstrap JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <!-- Latest compiled and minified Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../CSS/styles.css">
+</head>
+<body>
+    <div class="container-fluid">
+      <h1 class="text-center">Welcome to the Musical Key Generator</h1>
+      <p class="text-center">When the Start Generator Button is Clicked, a New Key Will Be Generated Every 2 secs.  You can Increase or Decrease the Interval with the Slower &amp Faster Buttons.</p>
+        <div class="text-center">
+          <button class="btn btn-default" type="button" onclick="myFreq+=250; startLoop(); return false;">Slower</button>
+          <button class="btn btn-default" type="button" onclick="startLoop(); return false;">Start Generator</button>
+          <button class="btn btn-default" type="button" onclick="clearInterval(myInterval); return false;">Stop Generator</button>
+          <button class="btn btn-default" type="button" onclick="myFreq=myFreq-250; startLoop(); return false;">Faster</button>
+        </div>
+      <h1 class="text-center" style="margin-top:100px" id="keyDisplay">Keys Will Appear Here</h1>
+    </div>
+<script>
+    var myFreq = 2000;
+    var myInterval = 0;
+    function startLoop() {
+      if(myInterval > 0) clearInterval(myInterval);
+      myInterval = setInterval("generateKeys()", myFreq);
+    }
+    function generateKeys() {
+        var keyList = ['A','A#/Bb','B','C','C#/Db','D','D#/Eb','E','F','F#/Gb','G','G#/Ab'];
+        var randomNumber = Math.floor(Math.random()*keyList.length);
+        document.getElementById('keyDisplay').innerHTML = keyList[randomNumber];
+        randomNumber = Math.floor(Math.random()*keyList.length);
+    }
+</script>
+</body>
+</html>
